@@ -10,6 +10,15 @@ const nextConfig = {
 
     return config;
   },
+  swcMinify: true,
+  async rewrites() {
+    return [
+      {
+        source: "/:path*",
+        destination: "http://makeup-api.herokuapp.com/:path*",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

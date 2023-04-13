@@ -1,4 +1,12 @@
+import { useRouter } from "next/router";
 
-export default function Id() {
-  return <div>ID!</div>
-}
+const Post = () => {
+  const router = useRouter();
+  const { id } = router.query;
+  console.log("id : ", id);
+
+  // return <p>Post: {id}</p>;
+  return <p>hi</p>;
+};
+
+export default Post;

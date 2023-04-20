@@ -4,7 +4,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const Post = ({ item }: any) => {
+const Post = ({ item, name }: any) => {
   //2. getServerSideProps를 이용해 서버사이드 랜더링을 할 경우
   return (
     <>
@@ -14,6 +14,7 @@ const Post = ({ item }: any) => {
             <title>{item.name}</title>
             <meta name="description" content={item.description}></meta>
           </Head>
+          {name} 환경입니다.
           <Item item={item} />
         </>
       )}
@@ -50,14 +51,18 @@ const Post = ({ item }: any) => {
 
 export default Post;
 
+// 서버에서 동작, 브라우저 환경이 X (browser 객체 사용 못함)
 export async function getServerSideProps(context: any) {
   const id = context.params.id;
   const apiUrl = `http://makeup-api.herokuapp.com/api/v1/products/${id}.json`;
   const res = await axios.get(apiUrl);
   const data = res.data;
 
+  console.log("env : ", process.env.name);
+
   return {
     props: {
+      name: process.env.name,
       item: data,
     },
   };

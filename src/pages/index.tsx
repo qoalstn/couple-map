@@ -10,8 +10,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   // const API_URL = "/api/v1/products.json?brand=clinique";
-  const API_URL =
-    "http://makeup-api.herokuapp.com/api/v1/products.json?brand=clinique";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  //"http://makeup-api.herokuapp.com/api/v1/products.json?brand=clinique";
   const [map, setMap] = useState();
   const [list, setList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import { Divider, Header } from "semantic-ui-react";
+import { Divider, Header, Loader } from "semantic-ui-react";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -9,10 +9,12 @@ import ItemList from "@/component/item_list";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  // const API_URL = "/api/v1/products.json?brand=clinique";
   const API_URL =
     "http://makeup-api.herokuapp.com/api/v1/products.json?brand=clinique";
   const [map, setMap] = useState();
   const [list, setList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // function getMap() {
   //   axios({
@@ -33,6 +35,7 @@ export default function Home() {
 
   useEffect(() => {
     getData();
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -56,16 +59,27 @@ export default function Home() {
       <Head>
         <title>HOME | 커플맵</title>
       </Head>
-      <Header as="h3" style={{ paddingTop: 40 }}>
-        베스트 상품
-      </Header>
-      <Divider />
-      <ItemList list={list.slice(0, 9)} />
-      <Header as="h3" style={{ paddingTop: 40 }}>
-        신상품
-      </Header>
-      <Divider />
-      <ItemList list={list.slice(9)} />
+      {isLoading && (
+        <div style={{ padding: "300px 0" }}>
+          <Loader inline="centered" active>
+            Loading
+          </Loader>
+        </div>
+      )}
+      {!isLoading && (
+        <>
+          <Header as="h3" style={{ paddingTop: 40 }}>
+            베스트 상품
+          </Header>
+          <Divider />
+          <ItemList list={list.slice(0, 9)} />
+          <Header as="h3" style={{ paddingTop: 40 }}>
+            신상품
+          </Header>
+          <Divider />
+          <ItemList list={list.slice(9)} />
+        </>
+      )}
     </div>
   );
 }

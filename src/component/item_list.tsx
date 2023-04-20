@@ -9,7 +9,7 @@ export default function ItemList(list: any) {
         {list.list.length > 1
           ? list.list.map((item: any) => {
               return (
-                <Grid.Column>
+                <Grid.Column key={item.id}>
                   {/* <Link id="link" href={`/view/${item.id}`}> */}
                   <Link legacyBehavior href={`/view/${item.id}`}>
                     <a id="link">

@@ -10,7 +10,7 @@ const nextConfig = {
 
     return config;
   },
-  swcMinify: true,
+  // swcMinify: true,
   // async rewrites() {
   //   return [
   //     {

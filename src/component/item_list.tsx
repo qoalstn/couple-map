@@ -12,6 +12,7 @@ export default function ItemList(list: any) {
                 <Grid.Column key={item.id}>
                   {/* <Link id="link" href={`/view/${item.id}`}> */}
                   <Link legacyBehavior href={`/view/${item.id}`}>
+                    {/* <Link legacyBehavior href={`/detail/${item.id}`}> */}
                     <a id="link">
                       <Image
                         src={item.image_link}

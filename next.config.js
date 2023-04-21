@@ -10,6 +10,9 @@ const nextConfig = {
 
     return config;
   },
+  env: {
+    name: process.env.name,
+  },
   // swcMinify: true,
   // async rewrites() {
   //   return [
